@@ -1,0 +1,152 @@
+ <style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#nav{
+		width: 100%;
+		min-height: 40px;
+		background-color: #78d3ca;
+		padding-top: 10px;
+	}
+	#nav button{
+		background-color: white;
+		margin: 0 5px;
+		text-decoration: none;
+		color: black;
+		font-family: inherit;
+		font-size: 100%;
+		padding: .5em;
+		color: #444;
+		color: rgba(0,0,0,.8);
+		border: 1px solid #999;
+		border: 0 rgba(0,0,0,0);
+		background-color: #E6E6E6;
+		text-decoration: none;
+		border-radius: 2px;
+	}
+
+	#map{
+		display: block;
+	    position:absolute;
+	    height:auto;
+	    bottom:0;
+	    top:0;
+	    left:0;
+	    right:0;
+	    margin-top:50px;
+	}
+
+	.gm-style-iw {
+	  	min-width: 70px !important;
+	  	height: 20px !important;
+	}
+</style>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="./assets/js/gmaps.js"></script>
+
+<script>
+	$(document).ready(function(){
+	    var url = 'http://localhost/magangdimana/api/';
+	    var map;
+		map = new GMaps({
+	        div: '#map',
+	        lat: -12.043333,
+	        lng: -77.028333
+	    });
+		var id = document.URL.split('?')[1];
+
+	    GMaps.geolocate({
+	        success: function(position){
+	          	map.setCenter(position.coords.latitude, position.coords.longitude);
+	          	marker = map.addMarker({
+				  	lat: position.coords.latitude,
+				  	lng: position.coords.longitude,
+				  	title: "You're here!",
+				    icon: "./assets/img/black.png",
+				    infoWindow:{
+				        content: "You're here!",
+				        minWidth: 500
+				    },
+				    mouseover: function(e){
+				        infowindow.open(map, this); 
+				    }
+
+				});
+	          	var data = getPerusahaan(id);
+	          	var nama = getNama(id);
+
+				map.drawRoute({
+					origin: 	[position.coords.latitude, position.coords.longitude],
+					destination: [data[0], data[1]],
+					travelMode: 'driving',
+					strokeColor: '#131540',
+					strokeOpacity: 0.6,
+					strokeWeight: 6
+				});
+				marker = map.addMarker({
+				  	lat: data[0],
+				  	lng: data[1],
+				    infoWindow:{
+				        content: nama,
+				        minWidth: 500
+				    },
+				    mouseover: function(e){
+				        infowindow.open(map, this); 
+				    }
+
+				});
+	        },
+	        error: function(error){
+	          alert('Geolocation failed: '+error.message);
+	        },
+	        not_supported: function(){
+	          alert("Your browser does not support geolocation");
+	        }
+      	});
+
+      	$('#back').click(function(event) {
+      		window.history.back(-1);
+      	});
+
+      	function getPerusahaan(id) {
+      		var result = null;
+		    var scriptUrl = url+'perusahaan/get/'+id;
+
+		    $.ajax({
+		        url: scriptUrl,
+		        type: 'get',
+		        dataType: 'html',
+		        async: false,
+		        success: function(data) {
+		            result = JSON.parse(data);
+		        } 
+		     });
+		    var koordinat = result.koordinat.split(',');
+		    return koordinat;
+      	}
+
+      	function getNama(id) {
+      		var result = null;
+		    var scriptUrl = url+'perusahaan/get/'+id;
+
+		    $.ajax({
+		        url: scriptUrl,
+		        type: 'get',
+		        dataType: 'html',
+		        async: false,
+		        success: function(data) {
+		            result = JSON.parse(data);
+		        } 
+		     });
+		    return result.nama;
+      	}
+    });
+</script>
+
+<div id="nav">
+	<button id="back">Back</button>
+</div>
+<div id="map"></div>

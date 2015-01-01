@@ -1,0 +1,64 @@
+<style>
+  .list{
+    color: black;
+  }
+
+  .list:hover{
+    text-decoration: none;
+  }
+  
+  .media-body table th, .media-body table td{
+      padding-right: 5px;
+  }
+
+  img{
+    width: 70px;
+  }
+
+  .input-group{
+    position: fixed;
+    z-index: 1000000;
+  }
+
+  #content{
+    margin-top: 35px;
+  }
+
+  .input-group input, .input-group-addon{
+    border-radius: 0;
+    background-color: #dadada;
+  }
+
+
+</style>
+<div class="scrollable">  
+  <div class="scrollable-content">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search......" ng-model="search">
+      <span class="input-group-addon"><i class="fa fa-search"></i></span>
+    </div>
+    <div class="list-group" id="content">
+      <a href="#/perusahaan/{{data.id}}" ng-repeat="data in perusahaan | filter:search" class="list-group-item media">
+          <div class="pull-left">
+            <img src="{{logo}}{{data.logo}}" alt="">
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">{{data.nama}}</h3>
+            <table>
+              <tr>
+                <th>Kota</th>
+                <td>:</td>
+                <td>{{data.alamat}}</td>
+              </tr>
+              <tr>
+                <th>Posisi</th>
+                <td>:</td>
+                <td>{{data.info[0].posisi}}</td>
+              </tr>
+            </table>
+          </div>
+      </a>
+      
+    </div>
+  </div>
+</div>

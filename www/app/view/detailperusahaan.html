@@ -1,0 +1,133 @@
+<style>
+    img{
+      width: 100px;
+    }
+
+    .nav-tabs li{
+      width: 50%;
+    }
+
+    h4 i{
+      margin-top: 0.5em;
+    }
+
+    .nav-tabs>li>a{
+      color: white;
+      background-color: #95a5a6;
+    }
+
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus {
+      background-color: #78d3ca;
+      color: white;
+    }
+
+    .nav-tabs>li.active>a:hover {
+      color: #fff;
+      background-color: #78d3ca;
+      cursor: default;
+    }
+
+    .nav-tabs>li>a:hover {
+      color: #fff;
+      background-color: #78d3ca;
+      border: 1px solid #ddd;
+      border-bottom-color: transparent;
+      cursor: pointer;
+    }
+    
+    #Tab1{
+      padding-left: 1em;
+    }
+    
+    .tab-pane{
+      padding-top: 1em;
+    }
+
+
+</style>
+<div class="scrollable">  
+  <div class="scrollable-content">
+
+    <div class="list-group">
+      <div class="list-group-item media">
+          <div class="pull-left">
+            <img src="{{logo}}{{perusahaan.logo}}" alt="">
+          </div>
+          <div class="media-body">
+            <a href="mapId.html?{{perusahaan.id}}" class="btn btn-default" style="background-color: #e6e6e6; margin-top: 5px;">Map</a>
+          </div>
+    </div>
+  
+    <div class="section container-fluid">
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#Tab1" toggle="on" parent-active-class="active">Profile</a></li>
+        <li class=""><a href="#Tab2" toggle="on" parent-active-class="active">Info Magang</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" toggleable="" active-class="active" id="Tab1" exclusion-group="myTabs">
+
+          <h3>Alamat</h4>
+          <p class="page-header">{{perusahaan.alamat}}</p>
+
+          <h4>No Telepon</h4>
+          <p class="page-header">{{perusahaan.telepon}}</p>
+
+          <h4>Email</h4>
+          <p class="page-header">{{perusahaan.email}}</p>
+
+          <h4 class="page-header">Deskripsi</h4>
+          <p>{{perusahaan.deskripsi}}</p>
+        </div>
+
+        <div class="tab-pane " toggleable="" active-class="active"  id="Tab2" exclusion-group="myTabs">
+          <div class="panel-group" id="accordion">
+
+            <div ng-repeat="info in perusahaan.info" class="panel panel-default">
+              <div class="panel-heading" toggle="" target="{{info.id}}">
+                <h4 class="panel-title">
+                    {{info.posisi}} <i class="fa fa-chevron-right pull-right"></i>
+                </h4>
+              </div>
+              <div id="{{info.id}}" toggleable="" active-class="in" exclusion-group="accordion1" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <h4>Jurusan : </h4>
+                  <p>Informatika</p>
+                  <hr>
+
+                  <h4>Persyaratan : </h4>
+                  <p>{{info.persyaratan}}</p>
+                  <hr>
+
+                  <h4>Pengumpulan Berkas : </h4>
+                  <table class="table">
+                      <tbody>
+                        <tr>
+                          <th>Tanggal Upload</th>
+                          <td>{{info.tgl_upload}}</td>
+                        </tr>    
+                        <tr>
+                          <th>Tanggal Berkas</th>
+                          <td>{{info.tgl_berkas}}</td>
+                        </tr>    
+                        <tr>
+                          <th>Tanggal Mulai</th>
+                          <td>{{info.tgl_mulai}}</td>
+                        </tr>    
+                        <tr>
+                          <th>Tanggal Selesai</th>
+                          <td>{{info.tgl_selesai}}</td>
+                        </tr>    
+                      </tbody>
+                  </table>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

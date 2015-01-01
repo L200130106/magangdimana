@@ -1,0 +1,41 @@
+<style>
+	.pertiga{
+		width: 31%;
+		float: left;
+		padding: 1%;
+		margin: 1%;
+	}
+	.pertiga p, .pertiga h4{
+		text-align: center;
+	}
+
+	img{
+		width: 50%;
+	}
+
+	a{
+		color: black;
+	}
+
+	a:hover{
+		text-decoration: none;
+		color: black;
+	}
+</style>
+
+<div class="scrollable">  
+  <div class="scrollable-content">
+	<div class="list-group">
+      	<div class="container-fluid section section-break">
+			<div class="row">
+				<a ng-repeat="data in perusahaan" href="#/perusahaan/{{data.id}}" class="pertiga">
+					<p>
+					  <img src="{{logo}}{{data.logo}}" alt="">
+					</p>
+					<h4>{{data.nama}}</h4>
+ 				</a>
+			</div>
+      </div>
+    </div>
+  </div>
+</div>
