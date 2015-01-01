@@ -51,9 +51,7 @@ INSERT INTO `info` (`id`, `id_perusahaan`, `kategori`, `posisi`, `persyaratan`, 
 (1, 1, 1, 'Web Designer', 'ipk minimal 4.5\r\nharus bisa baca tulis\r\ntidak mudah sedih\r\ndan semangat terus', '2014-12-01', '2014-12-02', '2014-12-03', '2015-01-01'),
 (2, 1, 1, 'Web Programmer', 'ipk minimal 4.5\r\nharus bisa baca tulis\r\ntidak mudah sedih\r\ndan semangat terus', '2014-12-01', '2014-12-02', '2014-12-03', '2015-01-01'),
 (4, 2, 1, 'Software Analyst', 'Syarat minimal IPK 3.0, Pekerja keras, Tidak mudah menyerah, bejerja senin sampai sabtu', '2015-01-01', '2015-01-01', '2015-01-01', '2015-01-01'),
-(5, 3, 1, 'Project Manager', 'Berpengalaman menjadi PM selama minimal 2 tahun. IPK minimal 3.5. ', '2015-01-01', '2015-01-01', '2015-01-01', '2015-01-01'),
-(6, 4, 1, 'Programmer', 'Rajin bekerja\r\nipk minimal 3,4\r\nmenguasai bahasa pemrograman PHP', '2014-12-27', '2015-01-12', '2015-02-01', '2015-03-31'),
-(8, 5, 3, 'pemasaran/marketing', 'sehat jasmani dan rohani', '2014-12-29', '2015-01-14', '2015-02-01', '2015-04-30');
+(5, 3, 1, 'Project Manager', 'Berpengalaman menjadi PM selama minimal 2 tahun. IPK minimal 3.5. ', '2015-01-01', '2015-01-01', '2015-01-01', '2015-01-01');
 
 -- --------------------------------------------------------
 
